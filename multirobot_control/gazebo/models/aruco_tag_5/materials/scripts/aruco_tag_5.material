@@ -1,0 +1,14 @@
+material ArucoTag5
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture marker_5.png
+        filtering trilinear
+      }
+    }
+  }
+}

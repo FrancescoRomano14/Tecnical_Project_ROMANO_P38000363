@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="fra2mo_lidar_only">
+  
+  <!-- Include original fra2mo base (without D435 camera) -->
+  <xacro:include filename="$(find ros2_fra2mo)/urdf/fra2mo_base_macro.xacro"/>
+  <xacro:include filename="$(find ros2_fra2mo)/urdf/lidar_gazebo_macro.xacro"/> 
+  
+  <xacro:property name="LIDAR" value="True"/>
+  
+  <!-- Diff Drive Robot Base -->
+  <xacro:fra2mo_base/>
+
+  <!-- LIDAR Sensor (sonar) --> 
+  <xacro:if value="${LIDAR}">
+    <xacro:lidar_gazebo_sensor parent="lidar_link"/>
+  </xacro:if>
+
+</robot>

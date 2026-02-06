@@ -1,0 +1,5 @@
+iiwa_scanner_node:
+  ros__parameters:
+    scan_period: 15.0   # seconds per full 360° rotation (più lento)
+    update_rate: 10.0    # Hz - aggiornamenti frequenti per controllo reattivo
+    startup_timeout: 1.0  # secondi di attesa prima di iniziare comunque

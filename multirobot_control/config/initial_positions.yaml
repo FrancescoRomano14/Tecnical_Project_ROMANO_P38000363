@@ -1,0 +1,10 @@
+# Default initial positions for the iiwa arm
+# Position: L-shape with camera pointing at 225° (Sud-Ovest)
+initial_positions:
+  joint_a1: -2.356 # 225° verso Sud-Ovest
+  joint_a2: 0   # solleva il braccio
+  joint_a3: 0.0
+  joint_a4: -1.57   # -90° gomito (forma L)
+  joint_a5: 0.0
+  joint_a6: 0.0     # link_7 parallelo al piano
+  joint_a7: 0.0

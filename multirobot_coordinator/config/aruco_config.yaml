@@ -1,0 +1,6 @@
+/**:
+  ros__parameters:
+    dictionary: 4  # DICT_4X4_50
+    marker_size: 0.15  # metri
+    image_is_rectified: true
+    use_sim_time: true

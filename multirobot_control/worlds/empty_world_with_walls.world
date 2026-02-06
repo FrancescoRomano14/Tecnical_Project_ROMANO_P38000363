@@ -1,0 +1,406 @@
+<?xml version="1.0" ?>
+<sdf version="1.8">
+  <world name="default">
+    
+    <!-- Physics -->
+    <physics name="1ms" type="ignored">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+    </physics>
+    
+    <!-- Plugins -->
+    <plugin filename="ignition-gazebo-physics-system" name="ignition::gazebo::systems::Physics"></plugin>
+    <plugin filename="ignition-gazebo-user-commands-system" name="ignition::gazebo::systems::UserCommands"></plugin>
+    <plugin filename="ignition-gazebo-scene-broadcaster-system" name="ignition::gazebo::systems::SceneBroadcaster"></plugin>
+
+    <!-- Lighting -->
+    <light type="directional" name="sun">
+      <cast_shadows>true</cast_shadows>
+      <pose>0 0 10 0 0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <attenuation>
+        <range>1000</range>
+        <constant>0.9</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <direction>-0.5 0.1 -0.9</direction>
+    </light>
+
+    <!-- Ground Plane -->
+    <model name="ground_plane">
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <material>
+            <ambient>0.8 0.8 0.8 1</ambient>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+            <specular>0.8 0.8 0.8 1</specular>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Iiwa Pedestal (Platform for robot arm) -->
+    <model name="iiwa_pedestal">
+      <pose>0 0 0.15 0 0 0</pose>
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.6 0.6 0.3</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.6 0.6 0.3</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.3 0.3 0.3 1</ambient>
+            <diffuse>0.4 0.4 0.4 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- ArUco Marker ID 5 - Settore Nord -->
+    <include>
+      <uri>model://aruco_tag_5</uri>
+      <name>aruco_marker_5</name>
+      <pose>-0.71 2.79 2.5 0 1.5708 -1.5708</pose>
+    </include>
+
+    <!-- ArUco Marker ID 10 - Settore Est -->
+    <include>
+      <uri>model://aruco_tag_10</uri>
+      <name>aruco_marker_10</name>
+      <pose>2 0 2. 0 1.5708 0</pose>
+    </include>
+
+    <!-- ArUco Marker ID 15 - Settore Sud -->
+    <include>
+      <uri>model://aruco_tag_15</uri>
+      <name>aruco_marker_15</name>
+      <pose>0 -2.95 0.84 0 1.5708 1.5708</pose>
+    </include>
+
+    <!-- ArUco Marker ID 20 - Settore Ovest -->
+    <include>
+      <uri>model://aruco_tag_20</uri>
+      <name>aruco_marker_20</name>
+      <pose>-2.47 -0.07 0.91 0 1.5708 3.14159</pose>
+    </include>
+
+    <!-- Wall 1 (North) -->
+    <model name="wall_1">
+      <pose>0 4 0.5 0 0 0</pose>
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>8 0.1 1</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>8 0.1 1</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.5 0.5 0.5 1</ambient>
+            <diffuse>0.7 0.7 0.7 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Wall 2 (South) -->
+    <model name="wall_2">
+      <pose>0 -4 0.5 0 0 0</pose>
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>8 0.1 1</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>8 0.1 1</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.5 0.5 0.5 1</ambient>
+            <diffuse>0.7 0.7 0.7 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Wall 3 (East) -->
+    <model name="wall_3">
+      <pose>4 0 0.5 0 0 1.5707</pose>
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>8 0.1 1</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>8 0.1 1</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.5 0.5 0.5 1</ambient>
+            <diffuse>0.7 0.7 0.7 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Wall 4 (West) -->
+    <model name="wall_4">
+      <pose>-4 0 0.5 0 0 1.5707</pose>
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>8 0.1 1</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>8 0.1 1</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.5 0.5 0.5 1</ambient>
+            <diffuse>0.7 0.7 0.7 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Obstacle 1: Large Box (Southwest quadrant) -->
+    <model name="obstacle_box_1">
+      <pose>-1.8 -1.5 0.25 0 0 0.5</pose>
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.6 0.6 0.5</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.6 0.6 0.5</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.6 0.4 0.2 1</ambient>
+            <diffuse>0.8 0.6 0.3 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Obstacle 2: Cylinder (Northwest quadrant) -->
+    <model name="obstacle_cylinder_1">
+      <pose>-1.5 2 0.3 0 0 0</pose>
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.3</radius>
+              <length>0.6</length>
+            </cylinder>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.3</radius>
+              <length>0.6</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0.3 0.5 0.7 1</ambient>
+            <diffuse>0.4 0.6 0.9 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Obstacle 3: Tall Rectangular Box (Southeast quadrant) -->
+    <model name="obstacle_box_2">
+      <pose>2 -2 0.4 0 0 0.8</pose>
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.4 0.8 0.8</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.4 0.8 0.8</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.7 0.3 0.3 1</ambient>
+            <diffuse>0.9 0.4 0.4 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Obstacle 4: Small Cylinder (Near center, slightly northeast) -->
+    <model name="obstacle_cylinder_2">
+      <pose>0.8 0.8 0.2 0 0 0</pose>
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.2</radius>
+              <length>0.4</length>
+            </cylinder>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.2</radius>
+              <length>0.4</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0.5 0.7 0.3 1</ambient>
+            <diffuse>0.6 0.9 0.4 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Obstacle 5: Wide Flat Box (South side) -->
+    <model name="obstacle_box_3">
+      <pose>-0.5 -2.5 0.15 0 0 0</pose>
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1.0 0.5 0.3</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1.0 0.5 0.3</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.4 0.4 0.6 1</ambient>
+            <diffuse>0.5 0.5 0.8 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Obstacle 6: Small Box (Northeast, near wall) -->
+    <model name="obstacle_box_4">
+      <pose>2.5 2.3 0.2 0 0 0.3</pose>
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.4 0.4 0.4</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.4 0.4 0.4</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.8 0.6 0.4 1</ambient>
+            <diffuse>1.0 0.8 0.5 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Obstacle 7: Medium Cylinder (West side) -->
+    <model name="obstacle_cylinder_3">
+      <pose>-2.5 -0.5 0.35 0 0 0</pose>
+      <static>true</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.25</radius>
+              <length>0.7</length>
+            </cylinder>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.25</radius>
+              <length>0.7</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0.6 0.3 0.5 1</ambient>
+            <diffuse>0.8 0.4 0.7 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+  </world>
+</sdf>
