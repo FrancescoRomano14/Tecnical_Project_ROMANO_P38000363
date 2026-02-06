@@ -3,7 +3,7 @@
 Multi-robot coordination system for autonomous navigation using ArUco marker detection. A fixed manipulator (KUKA IIWA) scans the environment exposing visual markers, while a mobile robot (Fra2mo) navigates autonomously to target sectors.
 
 ## Repository Content
--**multirobot_control** : Custom ROS2 package 
+- **multirobot_control** : Custom ROS2 package 
 - **multirobot_coordinator**: Custom ROS2 package 
 - **ros2_fra2mo**: Modified mobile robot package (custom map + optimized Nav2)
 
